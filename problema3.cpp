@@ -3,10 +3,17 @@
 using namespace std;
 
 bool solve(const vector<int>& pushed, const vector<int>& popped) {
-    // TODO: Implementar simulación con pila
-    return false;
+    Stack<int> pila;
+    for (int num : pushed) {
+        pila.push(num);
+        for (int i = 0; i <=popped.size(); i++) {
+            if (!pila.isEmpty() and pila.top() == popped[i]) {
+                pila.pop();
+            }
+        }
+    }
+    return pila.isEmpty();
 }
-
 void runTest(int testNumber, const vector<int>& pushed, const vector<int>& popped, bool expected) {
     bool result = solve(pushed, popped);
     if (result == expected) {
