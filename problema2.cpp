@@ -4,8 +4,31 @@
 using namespace std;
 
 string solve(const string& path) {
-    // TODO: Implementar solución usando pila de directorios
-    return "";
+    Stack<string> pila;
+    string temp;
+    for (int i = 0; i <= path.size(); i++) {
+        if (i == path.size() or path[i] == '/') {
+            if (temp == "..") {
+                if (!pila.isEmpty()) {pila.pop();}
+            }
+            else if (!temp.empty() and temp!= ".") {
+                pila.push(temp);
+            }
+            temp ="";
+        }
+        else {
+            temp += path[i];
+        }
+    }
+
+    string result;
+    while (!pila.isEmpty()) {
+        result = "/" + pila.top()+ result;
+        pila.pop();
+    }
+
+
+    return result.empty() ? "/" : result;
 }
 
 void runTest(int testNumber, const string& input, const string& expected) {
