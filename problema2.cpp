@@ -27,8 +27,11 @@ string solve(const string& path) {
         pila.pop();
     }
 
-
-    return result.empty() ? "/" : result;
+    if (result.empty()) {
+    return "/";
+} else {
+    return result;
+}
 }
 
 void runTest(int testNumber, const string& input, const string& expected) {
